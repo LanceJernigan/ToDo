@@ -1,8 +1,10 @@
 import React from 'react'
 
+import Tasks from '../tasks'
+
 const App = () => {
 
-    return <h1>Ye ye</h1>
+    return <Tasks />
 
 }
 
