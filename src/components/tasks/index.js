@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
 
+import Task from './task/'
 import NewTask from './newTask/'
 
 import {toggleTask} from './actions'
@@ -12,18 +12,9 @@ const Tasks = ({tasks, actions, parent = null}) => {
 
         <div className="tasks">
 
-            {tasks.map( task => (task.hasOwnProperty('parent') && task.parent === parent ?
-              <Link to={`/${task.id}`} className={task.complete && task.complete === true ?
-                  'task task-complete' :
-                  'task'
-                } style={{textDecoration: (task.complete ?
-                  'line-through' :
-                  'none'
-                ), display: 'block'}} key={task.id}>{task.name} : {task.id}</Link>
-              : null
-            ))}
+          {tasks.map( task => <Task task={task} />)}
 
-            <NewTask parent={parent} />
+          <NewTask parent={parent} />
 
         </div>
 
@@ -31,8 +22,8 @@ const Tasks = ({tasks, actions, parent = null}) => {
 
 }
 
-const mapStateToProps = state => ({
-    tasks: state.tasks
+const mapStateToProps = (state, {parent}) => ({
+    tasks: parent === null ? state.tasks.filter( task => ( ! task.hasOwnProperty('parent') || task.parent === null)) : state.tasks[parent].children.map( id => state.tasks[id])
 })
 
 const mapDispatchToProps = dispatch => ({
