@@ -2,9 +2,9 @@ import React from 'react'
 
 import Tasks from '../tasks'
 
-const App = () => {
+const App = ({params}) => {
 
-    return <Tasks />
+    return <Tasks parent={params.hasOwnProperty('taskID') ? params.taskID : null} />
 
 }
 

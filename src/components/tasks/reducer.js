@@ -3,8 +3,10 @@ import {ADD_TASK} from './actions'
 
 const initialState = [
     {
-        id: 1,
-        name: 'Ye ye'
+        id: 0,
+        name: 'Ye ye',
+        parent: null,
+        children: []
     }
 ]
 
@@ -31,7 +33,7 @@ const taskActions = {
         if (! task.hasOwnProperty('name'))
             return state
 
-        task.id = state.length + 1
+        task.id = state.length
 
         return [...state, task]
 

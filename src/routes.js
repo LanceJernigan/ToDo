@@ -13,6 +13,7 @@ const routes = (
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={App} />
+                <Route path="/:taskID" component={App} />
             </Route>
         </Router>
     </Provider>

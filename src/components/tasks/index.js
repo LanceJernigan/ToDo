@@ -1,27 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 
 import NewTask from './newTask/'
 
 import {toggleTask} from './actions'
 
-const Tasks = ({tasks, actions}) => {
+const Tasks = ({tasks, actions, parent = null}) => {
 
     return (
 
         <div className="tasks">
 
-            {tasks.map( task => {
+            {tasks.map( task => (task.hasOwnProperty('parent') && task.parent === parent ?
+              <Link to={`/${task.id}`} className={task.complete && task.complete === true ?
+                  'task task-complete' :
+                  'task'
+                } style={{textDecoration: (task.complete ?
+                  'line-through' :
+                  'none'
+                ), display: 'block'}} key={task.id}>{task.name} : {task.id}</Link>
+              : null
+            ))}
 
-                return (
-
-                    <p className={task.complete && task.complete === true ? 'task task-complete' : 'task'} onClick={() => actions.task.toggle(task.id)} key={task.id}>{task.name}</p>
-
-                )
-
-            })}
-
-            <NewTask />
+            <NewTask parent={parent} />
 
         </div>
 
@@ -35,11 +37,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     actions: {
-        task: {
-            toggle: id => {
-                dispatch(toggleTask(id))
-            }
-        }
+      toggle: id => {
+          dispatch(toggleTask(id))
+      }
     }
 })
 
