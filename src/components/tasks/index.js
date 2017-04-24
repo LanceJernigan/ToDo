@@ -6,11 +6,13 @@ import NewTask from './newTask/'
 
 import {toggleTask} from './actions'
 
+import styles from './style.css'
+
 const Tasks = ({tasks, actions, parent = null}) => {
 
     return (
 
-        <div className="tasks">
+        <div className={styles.tasks}>
 
           {tasks.map( task => <Task task={task} />)}
 

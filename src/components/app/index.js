@@ -2,9 +2,15 @@ import React from 'react'
 
 import Tasks from '../tasks'
 
+import styles from './style.css'
+
 const App = ({params}) => {
 
-    return <Tasks parent={params.hasOwnProperty('taskID') ? parseInt(params.taskID, 10) : null} />
+    return (
+      <div className={styles.app}>
+        <Tasks parent={params.hasOwnProperty('taskID') ? parseInt(params.taskID, 10) : null} />
+      </div>
+    )
 
 }
 

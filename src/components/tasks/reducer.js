@@ -7,7 +7,7 @@ for (let i = 0; i < 110; i++) {
   
   let task = {
       id: i,
-      name: `Task ${i}`,
+      name: `Lorem Ipsum Dolor Sit Amit ${i}`,
       parent: i > 9 ? (i % 10) : null,
       children: []
   }
