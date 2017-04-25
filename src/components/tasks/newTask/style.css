@@ -1,0 +1,10 @@
+.newTask {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  margin: 1px 0 0;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 1em;
+  font-family: helvetica, sans-serif;
+}
