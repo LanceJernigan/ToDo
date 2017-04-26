@@ -1,0 +1,12 @@
+.taskListHeader {
+  margin: 0;
+  padding: 15px;
+}
+
+.taskListHeader a {
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, .9);
+  font-size: 1.5em;
+  font-family: helvetica, sans-serif;
+  text-decoration: none;
+}

@@ -3,29 +3,35 @@ import {connect} from 'react-redux'
 
 import Task from './task/'
 import NewTask from './newTask/'
+import TaskListHeader from './taskListHeader/'
 
 import {toggleTask} from './actions'
 
 import styles from './style.css'
 
-const Tasks = ({tasks, actions, parent = null}) => {
+const getTopLevelTasks = tasks => tasks.filter( task => ( ! task.hasOwnProperty('parent') || task.parent === null))
 
-    return (
+const getChildrenTasks = (tasks, parentId) => tasks[parentId].children.map( id => tasks[id])
 
-        <div className={styles.tasks}>
+const TasksList = ({tasks, actions, parent = null}) => (
+  <div className={styles.taskList}>
+  
+    <TaskListHeader parent={parent} />
 
-          {tasks.map( task => <Task task={task} />)}
+    {tasks.map(Task)}
 
-          <NewTask parent={parent} />
+    <NewTask parent={parent.id} />
 
-        </div>
+  </div>
+)
 
-    )
-
-}
-
-const mapStateToProps = (state, {parent}) => ({
-    tasks: parent === null ? state.tasks.filter( task => ( ! task.hasOwnProperty('parent') || task.parent === null)) : state.tasks[parent].children.map( id => state.tasks[id])
+const mapStateToProps = (state, {parentId}) => ({
+    tasks: parentId === null ?
+      getTopLevelTasks(state.tasks) :
+      getChildrenTasks(state.tasks, parentId),
+    parent: parentId !== null ?
+      state.tasks[parentId] :
+      {id: null, name: ''}
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -39,6 +45,6 @@ const mapDispatchToProps = dispatch => ({
 const TasksConnect = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Tasks)
+)(TasksList)
 
 export default TasksConnect

@@ -8,7 +8,7 @@ const App = ({params}) => {
 
     return (
       <div className={styles.app}>
-        <Tasks parent={params.hasOwnProperty('taskID') ? parseInt(params.taskID, 10) : null} />
+        <Tasks parentId={params.hasOwnProperty('taskID') ? parseInt(params.taskID, 10) : null} />
       </div>
     )
 
