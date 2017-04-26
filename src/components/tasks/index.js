@@ -26,12 +26,12 @@ const TasksList = ({tasks, actions, parent = null}) => (
 )
 
 const mapStateToProps = (state, {parentId}) => ({
-    tasks: (parentId === null || !state.tasks[parentId]) ?
-      getTopLevelTasks(state.tasks) :
-      getChildrenTasks(state.tasks, parentId),
-    parent: (parentId === null || !state.tasks[parentId]) ?
-      {id: null, name: ''} :
-      state.tasks[parentId]
+  tasks: (parentId === null || !state.tasks[parentId]) ?
+    getTopLevelTasks(state.tasks) :
+    getChildrenTasks(state.tasks, parentId),
+  parent: (parentId === null || !state.tasks[parentId]) ?
+    {id: null, name: ''} :
+    state.tasks[parentId]
 })
 
 const mapDispatchToProps = dispatch => ({
