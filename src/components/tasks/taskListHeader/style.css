@@ -1,11 +1,18 @@
 .taskListHeader {
   margin: 0;
   padding: 15px;
+  height: 150px;
+  position: relative;
+  background: #0b84d8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
 }
 
 .taskListHeader a {
   box-sizing: border-box;
-  color: rgba(0, 0, 0, .9);
+  color: #fff;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
   font-size: 1.5em;
   font-family: helvetica, sans-serif;
   text-decoration: none;
